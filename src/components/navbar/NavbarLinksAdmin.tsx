@@ -1,4 +1,5 @@
-// Chakra Imports
+import React, { useEffect, useState } from "react";
+import { useHistory, Link } from "react-router-dom";
 import {
   Avatar,
   Button,
@@ -17,36 +18,62 @@ import {
 import { ItemContent } from "components/menu/ItemContent";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { SidebarResponsive } from "components/sidebar/Sidebar";
-import PropTypes from "prop-types";
-import React from "react";
+import { getAuth, signInWithCustomToken } from "firebase/auth";
 // Assets
 import navImage from "assets/img/layout/Navbar.png";
 import { MdNotificationsNone, MdInfoOutline } from "react-icons/md";
 import { IoMdMoon, IoMdSunny } from "react-icons/io";
 import { FaEthereum } from "react-icons/fa";
 import routes from "routes";
-import { Link, useHistory } from "react-router-dom";
 
+import { getUserData } from "./userData";
 
+interface HeaderLinksProps {
+  variant?: string;
+  fixed?: boolean;
+  secondary?: boolean;
+  onOpen?: () => void;
+}
 
-export default function HeaderLinks(props: { secondary: boolean }) {
-  const { secondary } = props;
+const HeaderLinks: React.FC<HeaderLinksProps> = ({ secondary }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  // Chakra Color Mode
-  const navbarIcon = useColorModeValue("gray.400", "white");
-  let menuBg = useColorModeValue("white", "navy.800");
+  const [username, setUsername] = useState("");
+  const menuBg = useColorModeValue("white", "navy.800");
   const textColor = useColorModeValue("secondaryGray.900", "white");
+  const navbarIcon = useColorModeValue("gray.400", "white");
   const textColorBrand = useColorModeValue("brand.700", "brand.400");
   const ethColor = useColorModeValue("gray.700", "white");
   const borderColor = useColorModeValue("#E6ECFA", "rgba(135, 140, 189, 0.3)");
-  const ethBg = useColorModeValue("secondaryGray.300", "navy.900");
-  const ethBox = useColorModeValue("white", "navy.800");
   const shadow = useColorModeValue(
     "14px 17px 40px 4px rgba(112, 144, 176, 0.18)",
     "14px 17px 40px 4px rgba(112, 144, 176, 0.06)"
   );
-  const borderButton = useColorModeValue("secondaryGray.500", "whiteAlpha.200");
+  const ethBg = useColorModeValue("secondaryGray.300", "navy.900");
+  const ethBox = useColorModeValue("white", "navy.800");
   const history = useHistory();
+  const auth = getAuth();
+
+  
+  useEffect(() => {
+    const fetchData = async () => {
+        const token = localStorage.getItem("customToken");
+        const userId = localStorage.getItem("userId");
+
+        if (!token || !userId) {
+            console.error("Token or userId not found");
+            return;
+        }
+
+        try {
+            const userData = await getUserData(token, userId);
+            setUsername(userData.username);
+        } catch (error) {
+            console.error("Failed to fetch user data:", error);
+        }
+    };
+
+    fetchData();
+}, []);
 
   return (
     <Flex
@@ -239,7 +266,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
           <Avatar
             _hover={{ cursor: "pointer" }}
             color="white"
-            name="Adela Parkson"
+            name={username}
             bg="#11047A"
             size="sm"
             w="40px"
@@ -266,7 +293,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
               fontWeight="700"
               color={textColor}
             >
-              👋&nbsp; Hey, Adela
+              👋&nbsp; Hey, {username}
             </Text>
           </Flex>
           <Flex flexDirection="column" p="10px">
@@ -291,10 +318,9 @@ export default function HeaderLinks(props: { secondary: boolean }) {
               _focus={{ bg: "none" }}
               borderRadius="8px"
               px="14px"
-			  onClick={() => {
-				// Programmatically redirect to the sign-in page
-				history.push("/auth/sign-in");
-			  }}
+              onClick={() => {
+                history.push("/auth/sign-in");
+              }}
             >
               <Link to="/auth/sign-in">
                 <Text fontSize="sm">Log out</Text>
@@ -305,11 +331,6 @@ export default function HeaderLinks(props: { secondary: boolean }) {
       </Menu>
     </Flex>
   );
-}
-
-HeaderLinks.propTypes = {
-  variant: PropTypes.string,
-  fixed: PropTypes.bool,
-  secondary: PropTypes.bool,
-  onOpen: PropTypes.func,
 };
+
+export default HeaderLinks;
