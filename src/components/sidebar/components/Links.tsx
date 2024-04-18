@@ -22,15 +22,10 @@ export function SidebarLinks(props: {
 		return location.pathname.includes(routeName);
 	};
 
-	// this function creates the links from the secondary accordions (for example auth -> sign-in -> default)
-	const createLinks = (
-		routes: RoutesType[], 
-	) => {
-		return routes.map(
-			(
-				route: RoutesType,
-				index: number
-			) => {
+	const createLinks = (routes: RoutesType[]) => {
+		return routes
+			.filter(route => !route.hidden) // Filter out routes that are marked as hidden
+			.map((route, index) => {
 				if (route.layout === '/admin' || route.layout === '/auth' || route.layout === '/rtl') {
 					return (
 						<NavLink key={index} to={route.layout + route.path}>
@@ -80,9 +75,9 @@ export function SidebarLinks(props: {
 						</NavLink>
 					);
 				}
-			}
-		);
+			});
 	};
+	
 	//  BRAND
 	return <>{createLinks(routes)}</>
 }

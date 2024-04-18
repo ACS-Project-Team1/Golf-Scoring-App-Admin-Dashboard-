@@ -18,7 +18,6 @@ import {
 import { ItemContent } from "components/menu/ItemContent";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { SidebarResponsive } from "components/sidebar/Sidebar";
-import { getAuth, signInWithCustomToken } from "firebase/auth";
 // Assets
 import navImage from "assets/img/layout/Navbar.png";
 import { MdNotificationsNone, MdInfoOutline } from "react-icons/md";
@@ -51,29 +50,31 @@ const HeaderLinks: React.FC<HeaderLinksProps> = ({ secondary }) => {
   const ethBg = useColorModeValue("secondaryGray.300", "navy.900");
   const ethBox = useColorModeValue("white", "navy.800");
   const history = useHistory();
-  const auth = getAuth();
 
   
   useEffect(() => {
-    const fetchData = async () => {
-        const token = localStorage.getItem("customToken");
-        const userId = localStorage.getItem("userId");
+    const firebaseIdToken = localStorage.getItem("firebaseIdToken"); // Retrieve the Firebase ID token
+    const userId = localStorage.getItem("userId");
 
-        if (!token || !userId) {
-            console.error("Token or userId not found");
-            return;
-        }
+    if (!firebaseIdToken || !userId) {
+      console.error("No token or userId found");
+      return;
+    }
 
-        try {
-            const userData = await getUserData(token, userId);
-            setUsername(userData.username);
-        } catch (error) {
-            console.error("Failed to fetch user data:", error);
-        }
-    };
+    async function fetchUserData() {
+      try {
+        // Assuming getUserData is a function you have that takes the token and userId to fetch user data
+        const userData = await getUserData(firebaseIdToken, userId);
+        setUsername(userData.username || userId); // Display the username or user ID
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
 
-    fetchData();
-}, []);
+    fetchUserData();
+  }, []);
+  
+  
 
   return (
     <Flex
