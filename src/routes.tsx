@@ -44,18 +44,34 @@ const routes = [
 	},
 	{
 		name: 'Reports',
-		layout: '/auth',
-		path: '/sign-in',
+		layout: '/admin',
+		path: '/reports',
 		icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
-		component: SignInCentered
+		component: Profile
 	},
 	{
 		name: 'Help and Feedback',
-		layout: '/auth',
-		path: '/sign-up',
+		layout: '/admin',
+		path: '/help',
 		icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
-		component: SignUp
-	}
+		component: Profile
+	},
+	{
+        name: 'Sign In',
+        layout: '/auth',
+        path: '/sign-in',
+        icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
+        component: SignInCentered,
+        hidden: true
+    },
+    {
+        name: 'Sign Up',
+        layout: '/auth',
+        path: '/sign-up',
+        icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
+        component: SignUp,
+        hidden: true
+    }
 ];
 
 export default routes;

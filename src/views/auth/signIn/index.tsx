@@ -1,27 +1,29 @@
-import React, { useState, FormEvent } from "react";
-import { useHistory,Link } from "react-router-dom";
-import { Box, Button, Flex, FormControl, FormLabel, Input, Heading, Text, InputGroup, InputRightElement, Icon, Stack } from "@chakra-ui/react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useHistory, Link } from "react-router-dom";
+import {
+  Box, Button, Flex, FormControl, FormLabel, Input, Heading, Text, InputGroup, InputRightElement, Icon, Stack
+} from "@chakra-ui/react";
 import DefaultAuth from "layouts/auth/Default";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { signInWithCustomToken } from "firebase/auth";
+
+
 import { RiEyeCloseLine } from "react-icons/ri";
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithCustomToken } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
-// Your Firebase configuration
 const firebaseConfig = {
-  apiKey: "your_api_key",
-  authDomain: "your_auth_domain",
-  projectId: "your_project_id",
-  storageBucket: "your_storage_bucket",
-  messagingSenderId: "your_messaging_sender_id",
-  appId: "your_app_id",
-  measurementId: "your_measurement_id"
+  apiKey: "AIzaSyCqWh5Jqy5HkWb3DSII88LNevqCw4B8NCg",
+  authDomain: "golftrack-950c5.firebaseapp.com",
+  projectId: "golftrack-950c5",
+  storageBucket: "golftrack-950c5.appspot.com",
+  messagingSenderId: "318557414456",
+  appId: "1:318557414456:web:d6b363a5a5f174612e72cd",
+  measurementId: "G-C29T93JMMK",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
+export const auth = getAuth(app);
 function SignIn() {
   const history = useHistory();
   const [username, setUsername] = useState("");
@@ -30,18 +32,18 @@ function SignIn() {
   const [show, setShow] = useState(false);
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();  
-  
+    event.preventDefault();
+
     if (!username || !password) {
       setErrorMessage("Username and password are required.");
       return;
     }
-  
+
     const userData = {
       email: username,
       password,
     };
-  
+
     try {
       const response = await fetch("http://localhost:8080/api/users/login", {
         method: "POST",
@@ -50,14 +52,16 @@ function SignIn() {
         },
         body: JSON.stringify(userData),
       });
-  
+
       if (response.ok) {
-        // Assuming you get back a JSON with user details or token
         const data = await response.json();
-        console.log("Login Successful", data); // For debugging
+        const userCredential = await signInWithCustomToken(auth, data.token);
+        const idToken = await userCredential.user.getIdToken();
+        
+        localStorage.setItem("firebaseIdToken", idToken); // Save the Firebase token
         history.push("/admin/default"); // Redirect to dashboard
       } else {
-        const errorData = await response.json(); // Assuming error details are also in JSON
+        const errorData = await response.json();
         setErrorMessage(errorData.message || "Invalid username or password. Please try again.");
       }
     } catch (error) {
@@ -110,6 +114,7 @@ function SignIn() {
             </Button>
           </form>
           <Flex flexDirection='column' justifyContent='center' alignItems='start' maxW='100%' mt='0px'>
+
           <Text color="navy.700" fontWeight='400' fontSize='14px'>
           Not registered yet?{' '}
               <Link to='/auth/sign-up'>
@@ -117,10 +122,11 @@ function SignIn() {
                 Create an Account
                 </Text>
               </Link>
-          </Text>
+              </Text>
           </Flex>
         </Box>
         </Stack>
+
       </Flex>
     </DefaultAuth>
   );

@@ -7,6 +7,8 @@ import AdminLayout from './layouts/admin';
 import RTLLayout from './layouts/rtl';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme/theme';
+import SignInCentered from 'views/auth/signIn';
+import SignUp from 'views/auth/signUp';
 
 ReactDOM.render(
 	<ChakraProvider theme={theme}>
@@ -16,6 +18,8 @@ ReactDOM.render(
 					<Route path={`/auth`} component={AuthLayout} />
 					<Route path={`/admin`} component={AdminLayout} />
 					<Route path={`/rtl`} component={RTLLayout} />
+					{/* <Route path={`/auth/sign-in`} component={SignInCentered} />
+					<Route path={`/auth/sign-up`} component={SignUp} /> */}
 					<Redirect from='/' to='/auth/sign-in' />
 				</Switch>
 			</HashRouter>
