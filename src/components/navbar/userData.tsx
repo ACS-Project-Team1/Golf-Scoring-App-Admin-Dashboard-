@@ -2,7 +2,7 @@
 
 export async function getUserData(token: string, userId: string): Promise<{ username: string }> {
   try {
-      const response = await fetch(`http://localhost:8080/api/users/getUser/${userId}`, {
+      const response = await fetch(`http://ec2-3-22-98-227.us-east-2.compute.amazonaws.com:8080/api/users/getUser/${userId}`, {
           method: "GET",
           headers: {
               Authorization: `Bearer ${token}`,
