@@ -1,12 +1,8 @@
 // Chakra imports
-import { Box, Flex, Icon, Text } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
-import Footer from 'components/footer/FooterAuth';
 import FixedPlugin from 'components/fixedPlugin/FixedPlugin';
-// Custom components
-import { NavLink } from 'react-router-dom';
-// Assets
-import { FaChevronLeft } from 'react-icons/fa';
+
 
 function AuthIllustration(props: { children: JSX.Element | string; illustrationBackground: string }) {
 	const { children, illustrationBackground } = props;
