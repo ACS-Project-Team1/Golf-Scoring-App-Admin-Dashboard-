@@ -45,7 +45,7 @@ function SignIn() {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/users/login", {
+      const response = await fetch("http://ec2-3-22-98-227.us-east-2.compute.amazonaws.com:8080/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

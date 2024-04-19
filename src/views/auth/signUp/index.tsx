@@ -33,7 +33,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/api/users/registerUser", {
+      const response = await fetch("http://ec2-3-22-98-227.us-east-2.compute.amazonaws.com:8080/api/users/registerUser", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)

@@ -55,7 +55,7 @@ const HeaderLinks: React.FC<HeaderLinksProps> = ({ secondary }) => {
   useEffect(() => {
     const firebaseIdToken = localStorage.getItem("firebaseIdToken"); // Retrieve the Firebase ID token
     const userId = localStorage.getItem("userId");
-
+console.log('firebaseIdToken',firebaseIdToken)
     if (!firebaseIdToken || !userId) {
       console.error("No token or userId found");
       return;
