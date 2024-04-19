@@ -1,7 +1,5 @@
 // Chakra imports
 import { Box, SimpleGrid, useColorModeValue, Icon } from '@chakra-ui/react';
-// Assets
-import Usa from 'assets/img/dashboards/usa.png';
 // Custom components
 import MiniCalendar from 'components/calendar/MiniCalendar';
 import MiniStatistics from 'components/card/MiniStatistics';

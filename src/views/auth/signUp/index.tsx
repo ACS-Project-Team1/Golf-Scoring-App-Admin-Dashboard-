@@ -1,12 +1,11 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useHistory, Link } from "react-router-dom";
 import {
-  Box, Button, Flex, FormControl, FormLabel, Input, Heading, Text, Select, useColorModeValue, Stack, Icon, InputGroup, InputRightElement, Checkbox
+   Button, Flex, FormControl, FormLabel, Input, Heading, Text, Select, Stack, Icon, InputGroup, InputRightElement
 } from "@chakra-ui/react";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
 import DefaultAuth from "layouts/auth/Default";
-import illustration from "assets/img/auth/auth.png";
 
 const SignUp = () => {
   const history = useHistory();
