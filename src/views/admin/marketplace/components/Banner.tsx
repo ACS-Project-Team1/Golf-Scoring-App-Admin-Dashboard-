@@ -2,7 +2,7 @@
 import { Button, Flex, Link, Text } from '@chakra-ui/react';
 
 // Assets
-import banner from 'assets/img/nfts/NftBanner1.png';
+import banner from 'assets/img/nfts/GolfBanner2.png';
 
 export default function Banner() {
 	// Chakra Color Mode
@@ -28,7 +28,7 @@ export default function Banner() {
 				}}
 				fontWeight='700'
 				lineHeight={{ base: '32px', md: '42px' }}>
-				Discover, collect, and sell extraordinary NFTs
+				Revolutionizing Golf
 			</Text>
 			<Text
 				fontSize='md'
@@ -44,7 +44,7 @@ export default function Banner() {
 				fontWeight='500'
 				mb='40px'
 				lineHeight='28px'>
-				Enter in this creative world. Discover now the latest NFTs or start creating your own!
+				A shared adventure with our intuitive team handicap scoring system!
 			</Text>
 			<Flex align='center'>
 				<Button

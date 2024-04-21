@@ -9,12 +9,12 @@ import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 export default function NFT(props: {
 	image: string;
 	name: string;
-	author: string;
+	managedby: string;
 	bidders: string[];
 	download: string;
-	currentbid: string | number;
+	teamscore: string | number;
 }) {
-	const { image, name, author, bidders, download, currentbid } = props;
+	const { image, name, managedby, bidders, download, teamscore } = props;
 	const [ like, setLike ] = useState(false);
 	const textColor = useColorModeValue('navy.700', 'white');
 	const textColorBid = useColorModeValue('brand.500', 'white');
@@ -86,7 +86,7 @@ export default function NFT(props: {
 								}}
 								fontWeight='400'
 								me='14px'>
-								{author}
+								{managedby}
 							</Text>
 						</Flex>
 						<AvatarGroup
@@ -121,8 +121,8 @@ export default function NFT(props: {
 							'2xl': 'row'
 						}}
 						mt='25px'>
-						<Text fontWeight='700' fontSize='sm' color={textColorBid}>
-							Current Bid: {currentbid}
+						<Text fontWeight='700' fontSize='sm' color='green.700'>
+							Team Score: {teamscore}
 						</Text>
 						<Link
 							href={download}
@@ -141,7 +141,7 @@ export default function NFT(props: {
 								borderRadius='70px'
 								px='24px'
 								py='5px'>
-								Place Bid
+								Game Trend
 							</Button>
 						</Link>
 					</Flex>

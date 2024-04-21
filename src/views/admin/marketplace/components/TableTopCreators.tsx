@@ -40,7 +40,7 @@ function TopCreatorTable(props: { columnsData: any; tableData: any }) {
   const { getTableProps, getTableBodyProps, headerGroups, page, prepareRow } =
     tableInstance;
 
-  const textColor = useColorModeValue("navy.700", "white");
+  const textColor = useColorModeValue("green.700", "white");
   const textColorSecondary = useColorModeValue("secondaryGray.600", "white");
 
   return (
@@ -58,7 +58,7 @@ function TopCreatorTable(props: { columnsData: any; tableData: any }) {
           mb='10px'
           boxShadow='0px 40px 58px -20px rgba(112, 144, 176, 0.26)'>
           <Text color={textColor} fontSize='xl' fontWeight='600'>
-            Top Creators
+            Top Team Players
           </Text>
           <Button variant='action'>See all</Button>
         </Flex>
@@ -109,7 +109,7 @@ function TopCreatorTable(props: { columnsData: any; tableData: any }) {
                           </Text>
                         </Flex>
                       );
-                    } else if (cell.column.Header === "Artworks") {
+                    } else if (cell.column.Header === "Handicap Score") {
                       data = (
                         <Text
                           color={textColorSecondary}
