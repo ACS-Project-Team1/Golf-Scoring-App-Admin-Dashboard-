@@ -1,5 +1,8 @@
 // Chakra imports
-import { Box, SimpleGrid, useColorModeValue, Icon } from '@chakra-ui/react';
+import { Box, SimpleGrid, useColorModeValue, Icon, Grid, Flex } from '@chakra-ui/react';
+
+// Assets
+import Usa from 'assets/img/dashboards/usa.png';
 // Custom components
 import MiniCalendar from 'components/calendar/MiniCalendar';
 import MiniStatistics from 'components/card/MiniStatistics';
@@ -9,15 +12,28 @@ import WeeklyScores from 'views/admin/golf/WeeklyScores';
 import TeamScores from 'views/admin/golf/TeamScores';
 import HandicapAdjustments from 'views/admin/golf/HandicapAdjustments';
 import WeeklyHandicapChart from 'views/admin/golf/WeeklyHandicapChart';
+import Banner from 'views/admin/marketplace/components/Banner';
+
 
 export default function GolfLeagueDashboard() {
   // Chakra Color Mode
-  const brandColor = useColorModeValue('brand.500', 'white');
+  const brandColor = useColorModeValue('green.700', 'white');
   const boxBg = useColorModeValue('secondaryGray.300', 'whiteAlpha.100');
 
   return (
     <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
+      
+      <Grid
+        mb='20px'
+        gap={{ base: '50px', xl: '50px' }}
+        display={{ base: 'block', xl: 'grid' }}>
+        <Flex flexDirection='column' >
+          <Banner />
+        </Flex>
+      </Grid>
+
       <SimpleGrid columns={2} gap='20px' mb='20px'>
+
         {/* Two MiniStatistics components */}
         <MiniStatistics
           startContent={

@@ -124,10 +124,10 @@ console.log('firebaseIdToken',firebaseIdToken)
           fontWeight="700"
           me="6px"
         >
-          1,924
+          300
           <Text as="span" display={{ base: "none", md: "unset" }}>
             {" "}
-            ETH
+            Points
           </Text>
         </Text>
       </Flex>

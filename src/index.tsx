@@ -18,7 +18,7 @@ ReactDOM.render(
 					<Route path={`/rtl`} component={RTLLayout} />
 					{/* <Route path={`/auth/sign-in`} component={SignInCentered} />
 					<Route path={`/auth/sign-up`} component={SignUp} /> */}
-					<Redirect from='/' to='/auth/sign-in' />
+					<Redirect from='/' to='/admin/default' />
 				</Switch>
 			</HashRouter>
 		</React.StrictMode>
