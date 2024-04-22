@@ -23,6 +23,7 @@ import SignUp from "views/auth/signUp";
 import HelpFeedback from "views/admin/rtl";
 import Help from "views/admin/rtl";
 import EditProfile from "components/navbar/EditProfile";
+import TeamManagement from "views/admin/marketplace";
 
 const routes = [
   {
@@ -44,7 +45,7 @@ const routes = [
     layout: "/admin",
     path: "/team-management",
     icon: <Icon as={RiTeamLine} width="20px" height="20px" color="green.700" />,
-    component: NFTMarketplace,
+    component: TeamManagement,
     secondary: true,
   },
   {

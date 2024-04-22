@@ -28,7 +28,7 @@ const LeaguesTable = () => {
     const fetchData = async () => {
       try {
         // Correct API endpoint
-        const response = await fetch("http://ec2-3-22-98-227.us-east-2.compute.amazonaws.com:8080/api/leagues/getAllLeagues", {
+        const response = await fetch("http://localhost:8080/api/leagues/getAllLeagues", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

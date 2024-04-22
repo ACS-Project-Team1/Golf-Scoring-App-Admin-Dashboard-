@@ -48,7 +48,7 @@ const CreateLeagueForm = () => {
   };
 
   const handleSubmit = async () => {
-    const response = await fetch('http://ec2-3-22-98-227.us-east-2.compute.amazonaws.com:8080/api/leagues/createLeague', {
+    const response = await fetch('http://localhost:8080/api/leagues/createLeague', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
