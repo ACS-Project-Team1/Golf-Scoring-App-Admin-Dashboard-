@@ -57,13 +57,13 @@ export default function Footer() {
             md: "44px",
           }}
         >
-          <Link
+          {/* <Link
             fontWeight="500"
             color={linkColor}
             href="mailto:hello@simmmple.com"
           >
             Support
-          </Link>
+          </Link> */}
         </ListItem>
         <ListItem
           me={{
@@ -85,13 +85,13 @@ export default function Footer() {
             md: "44px",
           }}
         >
-          <Link
+          {/* <Link
             fontWeight="500"
             color={linkColor}
             href="https://simmmple.com/terms-of-service"
           >
             Terms of Use
-          </Link>
+          </Link> */}
         </ListItem>
         <ListItem>
           <Link

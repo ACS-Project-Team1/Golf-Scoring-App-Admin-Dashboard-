@@ -87,7 +87,7 @@ console.log('firebaseIdToken',firebaseIdToken)
       borderRadius="30px"
       boxShadow={shadow}
     >
-      <SearchBar
+      {/* <SearchBar
         mb={() => {
           if (secondary) {
             return { base: "10px", md: "unset" };
@@ -96,8 +96,8 @@ console.log('firebaseIdToken',firebaseIdToken)
         }}
         me="10px"
         borderRadius="30px"
-      />
-      <Flex
+      /> */}
+      {/* <Flex
         bg={ethBg}
         display={secondary ? "flex" : "none"}
         borderRadius="30px"
@@ -105,8 +105,8 @@ console.log('firebaseIdToken',firebaseIdToken)
         p="6px"
         align="center"
         me="6px"
-      >
-        <Flex
+      > */}
+        {/* <Flex
           align="center"
           justify="center"
           bg={ethBox}
@@ -114,10 +114,10 @@ console.log('firebaseIdToken',firebaseIdToken)
           w="29px"
           borderRadius="30px"
           me="7px"
-        >
-          <Icon color={ethColor} w="9px" h="14px" as={FaEthereum} />
-        </Flex>
-        <Text
+        > */}
+          {/* <Icon color={ethColor} w="9px" h="14px" as={FaEthereum} /> */}
+        {/* </Flex> */}
+        {/* <Text
           w="max-content"
           color={ethColor}
           fontSize="sm"
@@ -129,8 +129,8 @@ console.log('firebaseIdToken',firebaseIdToken)
             {" "}
             Points
           </Text>
-        </Text>
-      </Flex>
+        </Text> */}
+      {/* </Flex> */}
       <SidebarResponsive routes={routes} />
       <Menu>
         <MenuButton p="0px">
@@ -176,7 +176,7 @@ console.log('firebaseIdToken',firebaseIdToken)
               borderRadius="8px"
               mb="10px"
             >
-              <ItemContent info="Horizon UI Dashboard PRO" />
+              <ItemContent info="Golf Pro" />
             </MenuItem>
             <MenuItem
               _hover={{ bg: "none" }}
@@ -185,13 +185,13 @@ console.log('firebaseIdToken',firebaseIdToken)
               borderRadius="8px"
               mb="10px"
             >
-              <ItemContent info="Horizon Design System Free" />
+              <ItemContent info="Golf Pro" />
             </MenuItem>
           </Flex>
         </MenuList>
       </Menu>
 
-      <Menu>
+      {/* <Menu>
         <MenuButton p="0px">
           <Icon
             mt="6px"
@@ -212,9 +212,9 @@ console.log('firebaseIdToken',firebaseIdToken)
           mt="22px"
           minW={{ base: "unset" }}
           maxW={{ base: "360px", md: "unset" }}
-        >
-          <Image src={navImage} borderRadius="16px" mb="28px" />
-          <Flex flexDirection="column">
+        > */}
+          {/* <Image src={navImage} borderRadius="16px" mb="28px" /> */}
+          {/* <Flex flexDirection="column"> */}
             {/* <Link w="100%" href="https://horizon-ui.com/pro">
               <Button w="100%" h="44px" mb="10px" variant="brand">
                 Buy Horizon UI PRO
@@ -240,9 +240,9 @@ console.log('firebaseIdToken',firebaseIdToken)
 								Horizon 
 							</Button>
 						</Link> */}
-          </Flex>
-        </MenuList>
-      </Menu>
+          {/* </Flex> */}
+        {/* </MenuList> */}
+      {/* </Menu> */}
 
       <Button
         variant="no-hover"
@@ -306,14 +306,14 @@ console.log('firebaseIdToken',firebaseIdToken)
             >
               <Text fontSize="sm">Profile Settings</Text>
             </MenuItem>
-            <MenuItem
+            {/* <MenuItem
               _hover={{ bg: "none" }}
               _focus={{ bg: "none" }}
               borderRadius="8px"
               px="14px"
             >
               <Text fontSize="sm">Newsletter Settings</Text>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               _hover={{ bg: "none" }}
               _focus={{ bg: "none" }}
