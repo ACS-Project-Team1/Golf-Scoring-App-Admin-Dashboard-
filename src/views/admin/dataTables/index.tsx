@@ -20,12 +20,13 @@ import React from "react";
 //import EventManagementPage from "components/card/eventcard";
 //import LeaguesTable from "components/card/eventcard";
 //import LeaguesTableTest from "components/card/eventcard";
+import LeagueForm from "components/card/leagueform";
 
 export default function Settings() {
   // Chakra Color Mode
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
-
+      <LeagueForm />
       <SimpleGrid
         mb='20px'
         columns={{ sm: 1, md: 2 }}
