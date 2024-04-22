@@ -304,7 +304,9 @@ console.log('firebaseIdToken',firebaseIdToken)
               borderRadius="8px"
               px="14px"
             >
-              <Text fontSize="sm">Profile Settings</Text>
+               <Link to="/admin/editProfile">
+                <Text fontSize="sm">Edit Profile</Text>
+              </Link>
             </MenuItem>
             {/* <MenuItem
               _hover={{ bg: "none" }}
