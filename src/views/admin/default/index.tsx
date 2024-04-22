@@ -1,5 +1,6 @@
 // Chakra imports
 import { Box, SimpleGrid, useColorModeValue, Icon, Grid, Flex } from '@chakra-ui/react';
+import {useState, useEffect} from "react";
 
 // Assets
 import Usa from 'assets/img/dashboards/usa.png';
@@ -19,6 +20,90 @@ export default function GolfLeagueDashboard() {
   // Chakra Color Mode
   const brandColor = useColorModeValue('green.700', 'white');
   const boxBg = useColorModeValue('secondaryGray.300', 'whiteAlpha.100');
+  const [handicapIndex, setHandicapIndex] = useState(0);
+  const [highestAverageScore, setHighestAverageScore] = useState(0);
+  const access_token = localStorage.getItem("firebaseIdToken");
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch users data
+        const userResponse = await fetch("http://ec2-3-22-98-227.us-east-2.compute.amazonaws.com:8080/api/users/getAllUsers", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + access_token,
+          }
+        });
+  
+        const userData = await userResponse.json();
+        console.log("User data:", userData);
+  
+        // Fetch teams data
+        const teamResponse = await fetch("http://ec2-3-22-98-227.us-east-2.compute.amazonaws.com:8080/api/teams/getAllTeams", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + access_token,
+          }
+        });
+  
+        const teamsData = await teamResponse.json();
+        console.log("Teams data:", teamsData);
+        
+      
+  
+        // Calculate highest average score
+        let highestAverageScore = -Infinity;
+  
+        // Iterate over each team
+        teamsData.forEach((team:any) => {
+          // Iterate over each player in the team
+          team.players.forEach((player:any) => {
+            let totalScore = 0;
+            let totalGames = 0;
+  
+            // Calculate total score and total games for this player
+            player.scoreCards.forEach((scoreCard:any) => {
+              totalScore += scoreCard.scoreEntries.reduce((acc:any, entry:any) => acc + entry.score, 0);
+              totalGames += scoreCard.scoreEntries.length;
+            });
+  
+            // Calculate average score for this player
+            const averageScore = totalGames > 0 ? totalScore / totalGames : 0;
+  
+            // Update highestAverageScore if necessary
+            highestAverageScore = Math.max(highestAverageScore, averageScore);
+          });
+        });
+  
+        console.log("Highest average score:", highestAverageScore);
+  
+        // Set the state with the calculated highest average score
+        setHighestAverageScore(highestAverageScore);
+  
+        // Calculate best handicap index
+        let bestHandicap = 0;
+  
+        // Iterate over each user in userData
+        userData.forEach((user:any) => {
+          // Check if the user's handicapIndex is greater than the current bestHandicap
+          if (user.handicapIndex > bestHandicap) {
+            // If yes, update the bestHandicap
+            bestHandicap = user.handicapIndex;
+          }
+        });
+  
+        // Set the state with the calculated best handicap index
+        setHandicapIndex(bestHandicap);
+  
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData();
+  }, [access_token]);
 
   return (
     <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
@@ -44,8 +129,8 @@ export default function GolfLeagueDashboard() {
               icon={<Icon w='32px' h='32px' as={MdScore} color={brandColor} />}
             />
           }
-          name='Best Score This Round'
-          value='69'
+          name='Best Handicap Score'
+          value= {handicapIndex}
         />
         <MiniStatistics
           startContent={
@@ -57,7 +142,7 @@ export default function GolfLeagueDashboard() {
             />
           }
           name='Average Score'
-          value='72'
+          value= {highestAverageScore}
         />
       </SimpleGrid>
 
