@@ -41,7 +41,8 @@ const routes = [
 		path: '/handicap-score',
 		icon: <Icon as={RiTeamLine} width='20px' height='20px' color='green.700' />,
 		component: NFTMarketplace,
-		secondary: true
+		secondary: true,
+		hidden: true
 	},
 	{
 		name: 'Tournament',
@@ -49,7 +50,8 @@ const routes = [
 		path: '/tournament',
 		icon: <Icon as={RiTeamLine} width='20px' height='20px' color='green.700' />,
 		component: NFTMarketplace,
-		secondary: true
+		secondary: true,
+		hidden: true
 	},
 	{
 		name: 'Statistics',
@@ -57,7 +59,8 @@ const routes = [
 		path: '/statistics',
 		icon: <Icon as={RiTeamLine} width='20px' height='20px' color='green.700' />,
 		component: NFTMarketplace,
-		secondary: true
+		secondary: true,
+		hidden: true
 	},
 	{
 		name: 'CSV Data Upload',
@@ -79,7 +82,8 @@ const routes = [
 		path: '/nft-marketplace',
 		icon: <Icon as={RiTeamLine} width='20px' height='20px' color='green.700' />,
 		component: NFTMarketplace,
-		secondary: true
+		secondary: true,
+		hidden: true
 	},
 	{
 		name: 'Help and Feedback',
