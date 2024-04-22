@@ -1,25 +1,22 @@
-// TeamScores.js
+import React, { useState, useEffect } from 'react';
 import { Box, Text, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
-// Import necessary parts from Chart.js
-import {
-    Chart, CategoryScale, LinearScale, BarElement, LineElement,
-    PointElement, Legend, Tooltip
-  } from 'chart.js';
-
-  // Register the components
-Chart.register(
-    CategoryScale, LinearScale, BarElement, LineElement,
-    PointElement, Legend, Tooltip
-  );
-  
 
 const TeamScores = () => {
-    // Sample data
-    const teamScores = [
-        { team: 'Team A', playerOne: 'Alice', playerTwo: 'Bob', score: 68 },
-        { team: 'Team B', playerOne: 'Carol', playerTwo: 'Dave', score: 72 },
-        // Add more teams as needed
-    ];
+    const [teamData, setTeamData] = useState([]);
+
+    useEffect(() => {
+        const fetchTeamData = async () => {
+            try {
+                const response = await fetch("http://ec2-3-22-98-227.us-east-2.compute.amazonaws.com:8080/api/teams/getAllTeams");
+                const teams = await response.json();
+                setTeamData(teams);
+            } catch (error) {
+                console.error('Error fetching team data:', error);
+            }
+        };
+
+        fetchTeamData();
+    }, []);
 
     return (
         <Box p={5} shadow='md' borderWidth='1px'>
@@ -27,19 +24,23 @@ const TeamScores = () => {
             <Table variant='simple'>
                 <Thead>
                     <Tr>
-                        <Th>Team</Th>
-                        <Th>Player One</Th>
-                        <Th>Player Two</Th>
-                        <Th isNumeric>Score</Th>
+                        <Th>Team Name</Th>
+                        <Th>Player 1 Name</Th>
+                        <Th>Player 1 Handicap Score</Th>
+                        <Th>Player 2 Name</Th>
+                        <Th>Player 2 Handicap Score</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {teamScores.map((team, index) => (
+                    {teamData.map((team, index) => (
                         <Tr key={index}>
-                            <Td>{team.team}</Td>
-                            <Td>{team.playerOne}</Td>
-                            <Td>{team.playerTwo}</Td>
-                            <Td isNumeric>{team.score}</Td>
+                            <Td>{team.teamName}</Td>
+                            {team.players.map((player:any, idx:any) => (
+                                <React.Fragment key={idx}>
+                                    <Td>{player.firstName} {player.lastName}</Td>
+                                    <Td>{player.handicapIndex}</Td>
+                                </React.Fragment>
+                            ))}
                         </Tr>
                     ))}
                 </Tbody>

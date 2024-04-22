@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import {
   Box,
@@ -46,7 +44,7 @@ const dummyGolfers: Golfer[] = [
 
 const TeamManagementForm = () => {
   const [teams, setTeams] = useState<Team[]>([]);
-  const [newTeam, setNewTeam] = useState<Team>({ id: Math.random(), teamName: '', golfers: Array(4).fill('') });
+  const [newTeam, setNewTeam] = useState<Team>({ id: Math.random(), teamName: '', golfers: Array(2).fill('') });
   const [showMatchup, setShowMatchup] = useState(false);
 
   const handleGolferChange = (value: string, golferIndex: number): void => {
@@ -71,7 +69,7 @@ const TeamManagementForm = () => {
     } else {
       setTeams([...teams, { ...newTeam, id: Math.random() }]);
     }
-    setNewTeam({ id: Math.random(), teamName: '', golfers: Array(4).fill('') }); // Reset the form for next entry
+    setNewTeam({ id: Math.random(), teamName: '', golfers: Array(2).fill('') }); // Reset the form for next entry
     setShowMatchup(true);
   };
 
