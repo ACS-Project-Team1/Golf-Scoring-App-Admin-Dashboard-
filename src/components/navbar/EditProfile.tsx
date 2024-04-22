@@ -25,6 +25,7 @@ const EditProfile = () => {
     gender: "",
     phoneNumber: "",
     role: "USER",
+    password:"",
   });
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -45,6 +46,7 @@ const EditProfile = () => {
             gender: userData.gender,
             phoneNumber: userData.phoneNumber,
             role: userData.role,
+            password:userData.password,
           });
         })
         .catch((error) => {
@@ -73,6 +75,7 @@ const EditProfile = () => {
     }
 
     try {
+      console.log("JSON.stringify(formData)", JSON.stringify(formData));
       const response = await fetch(
         "http://ec2-3-22-98-227.us-east-2.compute.amazonaws.com:8080/api/users/updateUser",
         {

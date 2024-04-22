@@ -32,14 +32,16 @@ import TeamManagementForm from 'components/card/PlayerInfo';
 import TeamManagementTable from 'components/card/TableTeam';
 
 
-export default function Marketplace() {
+export default function TeamManagement() {
 	// Chakra Color Mode
 	const textColor = useColorModeValue('secondaryGray.900', 'white');
 	const textColorBrand = useColorModeValue('brand.500', 'white');
 	return (
 		
 		<Box pt={{ base: '400px', md: '80px', xl: '80px' }}>
-			<DashboardMetrics/> <TeamManagementForm/> <TeamManagementTable/>
+			<DashboardMetrics/> 
+			{/* <TeamManagementForm/> */}
+			 <TeamManagementTable/>
 			
 			{/* Main Fields */}
 			
@@ -48,7 +50,7 @@ export default function Marketplace() {
 				gridTemplateColumns={{ xl: 'repeat(3, 1fr)', '2xl': '1fr 0.46fr' }}
 				gap={{ base: '20px', xl: '20px' }}
 				display={{ base: 'block', xl: 'grid' }}>
-				<Flex flexDirection='column' gridArea={{ xl: '1 / 1 / 2 / 3', '2xl': '1 / 1 / 2 / 2' }}>
+				{/* <Flex flexDirection='column' gridArea={{ xl: '1 / 1 / 2 / 3', '2xl': '1 / 1 / 2 / 2' }}>
 					<Flex direction='column'>
 						<Flex
 							mt='45px'
@@ -90,12 +92,12 @@ export default function Marketplace() {
 	
 						
 					</Flex>
-				</Flex>
-				<Flex flexDirection='column' gridArea={{ xl: '1 / 3 / 2 / 4', '2xl': '1 / 2 / 2 / 3' }}>
-					<Card px='0px' mb='20px'>
-						<TableTopCreators tableData={tableDataTopCreators} columnsData={tableColumnsTopCreators} />
-					</Card>
-					<Card p='0px'>
+				</Flex> */}
+				{/* <Flex flexDirection='column' gridArea={{ xl: '1 / 3 / 2 / 4', '2xl': '1 / 2 / 2 / 3' }}> */}
+					{/* <Card px='0px' mb='20px'> */}
+						{/* <TableTopCreators tableData={tableDataTopCreators} columnsData={tableColumnsTopCreators} /> */}
+					{/* </Card> */}
+					{/* <Card p='0px'>
 						<Flex
 							align={{ sm: 'flex-start', lg: 'center' }}
 							justify='space-between'
@@ -130,8 +132,8 @@ export default function Marketplace() {
 							price='+50 Score'
 						/>
 
-					</Card>
-				</Flex>
+					</Card> */}
+				{/* </Flex> */}
 			</Grid>
 			{/* Delete Product */}
 		</Box>

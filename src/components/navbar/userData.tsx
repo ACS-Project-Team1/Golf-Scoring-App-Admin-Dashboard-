@@ -8,6 +8,7 @@ interface UserData {
   gender: string;
   phoneNumber: string;
   role: string;
+  password: string;
   // Add other fields as necessary, based on what your backend API returns
 }
 
@@ -32,6 +33,7 @@ export async function getUserData(token: string, userId: string): Promise<UserDa
         gender: userData.gender,
         phoneNumber: userData.phoneNumber,
         role: userData.role,
+        password:userData.password,
         // Map other fields here
       };
     } else {
